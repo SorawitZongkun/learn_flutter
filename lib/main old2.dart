@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:myproject/screens/item.dart';
+import 'package:myproject/screens/home.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,8 +18,7 @@ class MyApp extends StatelessWidget {
           backgroundColor: Colors.blue,
           centerTitle: true,
         ),
-        // Step 8: use a stateful widget
-        body: const Item(),
+        body: const Home(),
       ),
     );
   }
