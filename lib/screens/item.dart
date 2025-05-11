@@ -1,4 +1,4 @@
-// Step 8: use a stateful widget
+// Step 9: use a listview widget
 
 import 'package:flutter/material.dart';
 
@@ -10,59 +10,26 @@ class Item extends StatefulWidget {
 }
 
 class _ItemState extends State<Item> {
-  int quantity = 10;
-
-  void addQuantity() {
-    setState(() {
-      quantity += 1;
-    });
-  }
-
-  void subtractQuantity() {
-    setState(() {
-      quantity = quantity <= 0 ? 0 : quantity - 1;
-    });
-  }
+  List data = ["สมชาย", "สมพงษ์", "สมยศ", "สมศักดิ์"];
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            "$quantity",
-            style: const TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
+    return ListView.builder(
+      itemCount: data.length,
+      itemBuilder: (context, index) {
+        return Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(30),
+            color: Colors.orange,
           ),
-          const SizedBox(height: 20),
-          // OutlinedButton(
-          //   onPressed: () {
-          //     setState(() {
-          //       quantity += 1;
-          //     });
-          //   },
-          //   child: Text(
-          //     "+",
-          //     style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-          //   ),
-          // ),
-          OutlinedButton(
-            onPressed: addQuantity,
-            child: Text(
-              "+",
-              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-            ),
+          margin: EdgeInsets.symmetric(horizontal: 2, vertical: 5),
+          padding: EdgeInsets.all(40),
+          child: Text(
+            data[index],
+            style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
           ),
-          const SizedBox(height: 20),
-          OutlinedButton(
-            onPressed: subtractQuantity,
-            child: Text(
-              "-",
-              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-            ),
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 }
