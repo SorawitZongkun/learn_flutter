@@ -19,7 +19,8 @@ class _ItemState extends State<Item> {
         return Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(30),
-            color: Colors.orange,
+            // color: Colors.orange,
+            color: data[index].job.color, // for enum
           ),
           margin: EdgeInsets.symmetric(horizontal: 2, vertical: 5),
           padding: EdgeInsets.all(40),
@@ -37,12 +38,18 @@ class _ItemState extends State<Item> {
                     ),
                   ),
                   Text(
-                    "อายุ : ${data[index].age} ปี, อาชีพ : ${data[index].job}",
+                    // "อายุ : ${data[index].age} ปี, อาชีพ : ${data[index].job}",
+                    "อายุ : ${data[index].age} ปี, อาชีพ : ${data[index].job.title}", // for enum
                     style: TextStyle(fontSize: 20),
                   ),
                 ],
               ),
-              Image.asset("assets/images/mbappe.jpg", width: 70, height: 70),
+              // Image.asset("assets/images/mbappe.jpg", width: 70, height: 70),
+              Image.asset(
+                data[index].job.image,
+                width: 70,
+                height: 70,
+              ), // for enum
             ],
           ),
         );
