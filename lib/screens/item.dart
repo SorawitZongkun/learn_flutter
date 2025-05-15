@@ -1,7 +1,8 @@
-// Step 10: make a model for store data
+// Step 11: use google font
 
 import 'package:flutter/material.dart';
 import 'package:myproject/models/person.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Item extends StatefulWidget {
   const Item({super.key});
@@ -32,15 +33,28 @@ class _ItemState extends State<Item> {
                 children: [
                   Text(
                     data[index].name,
-                    style: const TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    // style: const TextStyle(
+                    //   fontSize: 30,
+                    //   fontWeight: FontWeight.bold,
+                    // ),
+                    style: GoogleFonts.kanit(
+                      textStyle: const TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFFFFFFFF), // color: Colors.white,
+                      ),
+                    ), // google font
                   ),
                   Text(
                     // "อายุ : ${data[index].age} ปี, อาชีพ : ${data[index].job}",
+                    // style: TextStyle(fontSize: 20),
                     "อายุ : ${data[index].age} ปี, อาชีพ : ${data[index].job.title}", // for enum
-                    style: TextStyle(fontSize: 20),
+                    style: GoogleFonts.prompt(
+                      textStyle: const TextStyle(
+                        fontSize: 20,
+                        color: Color(0xFFFFFFFF), // color: Colors.white,
+                      ),
+                    ), // google font
                   ),
                 ],
               ),
