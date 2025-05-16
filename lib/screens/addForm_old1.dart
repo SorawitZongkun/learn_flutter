@@ -1,7 +1,9 @@
-// Step 16: Routing
+// Step 12: TextForm Field
+// Step 13: Dropdown Field
+// Step 14: Form State
+// Step 15: Submit Data
 
 import 'package:flutter/material.dart';
-import 'package:myproject/main.dart';
 import 'package:myproject/models/person.dart';
 
 class AddForm extends StatefulWidget {
@@ -87,12 +89,9 @@ class _AddFormState extends State<AddForm> {
                     _formKey.currentState!.validate();
                     _formKey.currentState!.save();
                     data.add(Person(name: _name, age: _age, job: _job));
+                    print(data.length);
                     _formKey.currentState!
                         .reset(); // บันทึกแล้วให้เคลียร์ค่าใน Form ออก
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (ctx) => const MyApp()),
-                    );
                   },
                   style: FilledButton.styleFrom(backgroundColor: Colors.blue),
                   child: const Text("บันทึก", style: TextStyle(fontSize: 20)),
