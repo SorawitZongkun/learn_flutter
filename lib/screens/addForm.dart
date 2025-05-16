@@ -1,5 +1,7 @@
 // Step 12: TextForm Field
 // Step 13: Dropdown Field
+// Step 14: Form State
+// Step 15: Submit Data
 
 import 'package:flutter/material.dart';
 import 'package:myproject/models/person.dart';
@@ -12,6 +14,11 @@ class AddForm extends StatefulWidget {
 }
 
 class _AddFormState extends State<AddForm> {
+  final _formKey = GlobalKey<FormState>();
+  String _name = '';
+  int _age = 20;
+  Job _job = Job.police;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -26,6 +33,7 @@ class _AddFormState extends State<AddForm> {
         body: Padding(
           padding: const EdgeInsets.all(15),
           child: Form(
+            key: _formKey,
             child: Column(
               children: [
                 TextFormField(
@@ -33,15 +41,32 @@ class _AddFormState extends State<AddForm> {
                   decoration: const InputDecoration(
                     label: Text("ชื่อ", style: TextStyle(fontSize: 20)),
                   ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "กรุณาป้อนชื่อ";
+                    }
+                  },
+                  onSaved: (value) {
+                    _name = value!; // ! คือ ห้ามเป็นค่า null
+                  },
                 ),
                 TextFormField(
                   keyboardType: TextInputType.number,
                   decoration: const InputDecoration(
                     label: Text("อายุ", style: TextStyle(fontSize: 20)),
                   ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "กรุณาป้อนอายุ";
+                    }
+                  },
+                  onSaved: (value) {
+                    _age = int.parse(value.toString());
+                  },
                 ),
                 const SizedBox(height: 20),
                 DropdownButtonFormField(
+                  value: _job,
                   decoration: const InputDecoration(
                     label: Text("อาชีพ", style: TextStyle(fontSize: 20)),
                   ),
@@ -53,11 +78,21 @@ class _AddFormState extends State<AddForm> {
                         );
                       }).toList(),
                   onChanged: (value) {
-                    print(value);
+                    // print(value);
+                    setState(() {
+                      _job = value!;
+                    });
                   },
                 ),
                 FilledButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    _formKey.currentState!.validate();
+                    _formKey.currentState!.save();
+                    data.add(Person(name: _name, age: _age, job: _job));
+                    print(data.length);
+                    _formKey.currentState!
+                        .reset(); // บันทึกแล้วให้เคลียร์ค่าใน Form ออก
+                  },
                   style: FilledButton.styleFrom(backgroundColor: Colors.blue),
                   child: const Text("บันทึก", style: TextStyle(fontSize: 20)),
                 ),
