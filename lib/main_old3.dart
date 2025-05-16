@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:myproject/screens/item.dart';
-import 'package:myproject/screens/addForm.dart';
 
 void main() {
-  // Step 12: TextForm Field
-  runApp(const AddForm());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
